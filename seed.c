@@ -3,18 +3,6 @@
 
 #define M 0x100000000
 
-//Round function F
-/*#define F(k0, k1, r0, r1, t0, t1) \
-{ \
-t1 = (r0 ^ k0) ^ (r1 ^ k1); \
-t1 = G(t1); \
-t0 = t1 + (r0 ^ k0); \
-t0 = G(t0); \
-t1 += t0; \
-t1 = G(t1); \
-t0 += t1; \
-}*/
-
 //key schedule constants
 static const u_int32_t table_key[16] = 
 {
