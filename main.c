@@ -27,24 +27,12 @@ int main()
 
 	struct key* kek = malloc(sizeof(*kek));
 
-/*	key_schedule(kek, key1, key2);
-	
-	seed_encrypt (kek, Lv, Rv);
-
-	free (kek);*/
-
 	const u_int32_t pepe [4] = {0x00010203, 0x04050607, 0x08090a0b, 0x0c0d0e0f};
-//	const char *kek = "0x000102030405060708090a0b0c0d0e0f";
 	u_int32_t key [4] = {0x00000000, 0x00000000, 0x00000000, 0x00000000};
 	u_int32_t answ [4];
 	u_int32_t decrypt [4];
 
 	key_schedule(kek, key);
-
-	/*for (int i = 0; i < 16; i++)
-	{
-		printf("%x, %x\n", kek->ks[2*i], kek->ks[2*i + 1]);
-	}*/
 	seed_encrypt (kek, pepe, answ);
 	
 	for (int i = 0; i < 4; i++)
