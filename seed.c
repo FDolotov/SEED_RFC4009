@@ -170,29 +170,19 @@ void F(u_int32_t Lvs, u_int32_t Rvs, u_int32_t ki0, u_int32_t ki1, u_int32_t* t1
 	u_int32_t Rv, Lv, mRv, mLv;
 	Lv = Rvs;
 	Rv = Lvs;
-	//Rv = ((u_int64_t)(text) >> 32) & 0xFFFFFFFF;
-	//Lv = ((u_int64_t)(text) >> 0) & 0xFFFFFFFF;
 	
 	*t1 = ((G(( G(( G((Rv ^ ki0) ^ (Lv ^ ki1)) + (Rv ^ ki0)) % M) + G((Rv ^ ki0) ^ (Lv ^ ki1))) % M) + G(( G((Rv ^ ki0) ^ (Lv ^ ki1)) + (Rv ^ ki0)) % M)) % M) & 0xFFFFFFFF;
-	//mRv error
-
 	*t2 = G(( G(( G((Rv ^ ki0) ^ (Lv ^ ki1)) + (Rv ^ ki0)) % M) + G((Rv ^ ki0) ^ (Lv ^ ki1))) % M) & 0xFFFFFFFF;
-	//mLv right
-
-	/*u_int64_t answ = 0x0000000000000000;
-	answ += ((u_int64_t)(mRv) << 32) & 0xFFFFFFFFFFFFFFFF;
-	answ += (u_int64_t)((u_int32_t)(mLv) << 0) & 0xFFFFFFFFFFFFFFFF;
-	return answ;*/
 };
 
-void key_schedule (struct key *context, u_int32_t key [])//, u_int64_t keyL)
+void key_schedule (struct key *context, u_int32_t key [])
 {
 	u_int32_t t, key0, key1, key2, key3;
 	
-	key0 = key[0];//= ((u_int64_t)(keyR) >> 32) & 0xFFFFFFFF;
-	key1 = key[1];//= ((u_int64_t)(keyR) >> 0) & 0xFFFFFFFF;
-	key2 = key[2];//= ((u_int64_t)(keyL) >> 32) & 0xFFFFFFFF;
-	key3 = key[3];//= ((u_int64_t)(keyL) >> 0) & 0xFFFFFFFF;
+	key0 = key[0];
+	key1 = key[1];
+	key2 = key[2];
+	key3 = key[3];
 	
 	for (int i = 0; i < 16; i++)
 	{	
@@ -235,11 +225,6 @@ void seed_encrypt (struct key *context, const u_int32_t input[], u_int32_t outpu
 
 	for (int i = 0; i < 16; i++)
 	{	
-			
-//		printf("Round %3d : %8x, %8x | %8x, %8x, %8x, %8x\n", i, context->ks[2*i], context->ks[2*i + 1], Lv1, Lv2, Rv1, Rv2);
-
-
-	//	printf("%x, %x\n", t1, t2);
         	F(Rv1, Rv2, ks[2*i], ks[2*i + 1], &t1, &t2);
 		t1 ^= Lv1;
 		t2 ^= Lv2;
@@ -273,8 +258,6 @@ void seed_decrypt (struct key *context, const u_int32_t input[], u_int32_t outpu
 			
 //		printf("Round %3d : %8x, %8x | %8x, %8x, %8x, %8x\n", i, context->ks[2*i], context->ks[2*i + 1], Lv1, Lv2, Rv1, Rv2);
 
-
-	//	printf("%x, %x\n", t1, t2);
         	F(Rv1, Rv2, ks[30 - 2*i], ks[31 - 2*i], &t1, &t2);
 		t1 ^= Lv1;
 		t2 ^= Lv2;
