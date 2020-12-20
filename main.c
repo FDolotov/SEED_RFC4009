@@ -32,7 +32,7 @@ int main()
 	u_int32_t answ [4];
 	u_int32_t decrypt [4];
 
-	key_schedule(kek, key);
+	key_schedule_set(kek, key);
 	seed_encrypt (kek, pepe, answ);
 	
 	for (int i = 0; i < 4; i++)
