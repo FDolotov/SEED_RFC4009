@@ -1,10 +1,13 @@
 #include "seed.h"
 #include <sys/types.h>
 
+//constant for add and sub mod M
+#ifndef M
 #define M 0x100000000
+#endif
 
 //key schedule constants
-static const u_int32_t table_key[16] = 
+static const u_int32_t table_key [16] = 
 {
     0x9E3779B9, 0x3C6EF373, 0x78DDE6E6, 0xF1BBCDCC, 0xE3779B99, 0xC6EF3733, 0x8DDE6E67, 0x1BBCDCCF, 
     0x3779B99E, 0x6EF3733C, 0xDDE6E678, 0xBBCDCCF1, 0x779B99E3, 0xEF3733C6, 0xDE6E678D, 0xBCDCCF1B
@@ -12,7 +15,7 @@ static const u_int32_t table_key[16] =
 
 
 //S-box SS0
-static const u_int32_t SS0[256] = 
+static const u_int32_t SS0 [256] = 
 {
 	0x2989A1A8, 0x05858184, 0x16C6D2D4, 0x13C3D3D0, 0x14445054, 0x1D0D111C, 0x2C8CA0AC, 0x25052124,
 	0x1D4D515C, 0x03434340, 0x18081018, 0x1E0E121C, 0x11415150, 0x3CCCF0FC, 0x0ACAC2C8, 0x23436360,
@@ -49,7 +52,7 @@ static const u_int32_t SS0[256] =
 };
 
 //S-box SS1
-static const u_int32_t SS1[256] = 
+static const u_int32_t SS1 [256] = 
 {
 	0x38380830, 0xE828C8E0, 0x2C2D0D21, 0xA42686A2, 0xCC0FCFC3, 0xDC1ECED2, 0xB03383B3, 0xB83888B0,
 	0xAC2F8FA3, 0x60204060, 0x54154551, 0xC407C7C3, 0x44044440, 0x6C2F4F63, 0x682B4B63, 0x581B4B53,
@@ -86,7 +89,7 @@ static const u_int32_t SS1[256] =
 };
 
 //S-box SS2
-static const u_int32_t SS2[256] = 
+static const u_int32_t SS2 [256] = 
 {
 	0xA1A82989, 0x81840585, 0xD2D416C6, 0xD3D013C3, 0x50541444, 0x111C1D0D, 0xA0AC2C8C, 0x21242505,
 	0x515C1D4D, 0x43400343, 0x10181808, 0x121C1E0E, 0x51501141, 0xF0FC3CCC, 0xC2C80ACA, 0x63602343,
@@ -123,7 +126,7 @@ static const u_int32_t SS2[256] =
 };
 
 //S-box SS3
-static const u_int32_t SS3[256] = 
+static const u_int32_t SS3 [256] = 
 {
 	0x08303838, 0xC8E0E828, 0x0D212C2D, 0x86A2A426, 0xCFC3CC0F, 0xCED2DC1E, 0x83B3B033, 0x88B0B838,
 	0x8FA3AC2F, 0x40606020, 0x45515415, 0xC7C3C407, 0x44404404, 0x4F636C2F, 0x4B63682B, 0x4B53581B,
