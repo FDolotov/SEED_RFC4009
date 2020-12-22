@@ -35,6 +35,7 @@ int main()
 	key_schedule_set(kek, key);
 	seed_encrypt (kek, pepe, answ);
 	
+	printf("\nEncrypted text:\n");
 	for (int i = 0; i < 4; i++)
 	{
 		printf("%x ", answ[i]);
@@ -43,11 +44,13 @@ int main()
 	printf("\n");
 
 	seed_decrypt(kek, decrypt, answ);
+	
+	printf("\nDecrypted text:\n");
 	for (int i = 0; i < 4; i++)
 	{
 		printf("%x ", answ[i]);
 	}
-
+	printf("\n");
 	free(kek);
 
 	return 0;
