@@ -170,7 +170,7 @@ u_int32_t G(u_int32_t x)
 
 void F(u_int32_t Lvs, u_int32_t Rvs, u_int32_t ki0, u_int32_t ki1, u_int32_t* t1, u_int32_t* t2)
 {
-	u_int32_t Rv, Lv, mRv, mLv;
+	u_int32_t Rv, Lv;
 	Lv = Rvs;
 	Rv = Lvs;
 	
