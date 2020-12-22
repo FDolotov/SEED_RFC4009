@@ -178,7 +178,7 @@ void F(u_int32_t Lvs, u_int32_t Rvs, u_int32_t ki0, u_int32_t ki1, u_int32_t* t1
 	*t2 = G(( G(( G((Rv ^ ki0) ^ (Lv ^ ki1)) + (Rv ^ ki0)) % M) + G((Rv ^ ki0) ^ (Lv ^ ki1))) % M) & 0xFFFFFFFF;
 };
 
-void key_schedule (struct key *context, u_int32_t key [])
+void key_schedule_set (struct key *context, u_int32_t key [])
 {
 	u_int32_t t, key0, key1, key2, key3;
 	
